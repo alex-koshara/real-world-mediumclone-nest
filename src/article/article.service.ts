@@ -58,6 +58,26 @@ export class ArticleService {
     });
   }
 
+  async updateArticle(
+    currentUserId: number,
+    slug: string,
+    updateArticleDto: CreateArticleDTO,
+  ): Promise<ArticleEntity> {
+    const article = await this.findBySlug(slug);
+
+    if (!article) {
+      throw new HttpException('Article does not exist', HttpStatus.NOT_FOUND);
+    }
+
+    if (article.author.id !== currentUserId) {
+      throw new HttpException('You are not an author', HttpStatus.FORBIDDEN);
+    }
+
+    Object.assign(article, updateArticleDto);
+
+    return this.articleRepository.save(article);
+  }
+
   buildArticleResponse(article: ArticleEntity): IArticleResponseInterface {
     return { article };
   }
