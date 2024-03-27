@@ -3,7 +3,7 @@ import { CreateArticleDTO } from './dto/create.article.dto';
 import { UserEntity } from '@app/user/user.entity';
 import { ArticleEntity } from './article.entity';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DataSource, DeleteResult, Repository, getRepository } from 'typeorm';
+import { DataSource, DeleteResult, Repository } from 'typeorm';
 import { IArticleResponseInterface } from './types/articleResponse.interface';
 import slugify from 'slugify';
 import { IArticlesResponseInterface } from './types/articlesResponse.interface';
