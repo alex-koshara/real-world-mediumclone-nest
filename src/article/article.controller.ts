@@ -18,6 +18,7 @@ import { User } from '@app/user/decorators/user.decorator';
 import { IArticleResponseInterface } from './types/articleResponse.interface';
 import { IArticlesResponseInterface } from './types/articlesResponse.interface';
 import { BackendValidationPipe } from '@app/shared/backendValidation.pipe';
+import { DeleteResult } from 'typeorm';
 
 @Controller('articles')
 export class ArticleController {
@@ -85,7 +86,7 @@ export class ArticleController {
   async deleteArticle(
     @User('id') currentUserId: number,
     @Param('slug') slug: string,
-  ) {
+  ): Promise<DeleteResult> {
     return await this.articleService.deleteArticle(slug, currentUserId);
   }
 

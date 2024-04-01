@@ -12,5 +12,6 @@ import { FollowEntity } from '@app/profile/follow.entity';
   ],
   controllers: [ArticleController],
   providers: [ArticleService],
+  exports: [ArticleService],
 })
 export class ArticleModule {}
